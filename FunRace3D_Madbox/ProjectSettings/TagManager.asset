@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CameraChange
   - ResetCamera
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

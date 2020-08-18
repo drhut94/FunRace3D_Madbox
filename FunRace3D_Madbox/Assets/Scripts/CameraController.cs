@@ -24,10 +24,29 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate() {
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
+        if (player.GetStartGame()) {
 
-        Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
+
+            Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+    }
+
+    #endregion
+
+
+    #region Public Methods
+
+    public void ChangeCamera(Vector3 pos) {
+
+        target.transform.position = pos;
+    }
+
+    public void ResetCamera() {
+
+        target.transform.position = target.transform.parent.position;
     }
 
     #endregion
@@ -40,20 +59,17 @@ public class CameraController : MonoBehaviour
 
     }
 
-    private void ResetCamera() {
 
-        target.transform.position = target.transform.parent.position;
-    }
 
     #endregion
 
-    private void OnTriggerEnter(Collider other) {
+    //private void OnTriggerEnter(Collider other) {
 
-        if (other.CompareTag("CameraChange")) {
-            target.transform.position = other.transform.position;
-        }
-        else if (other.CompareTag("ResetCamera")) {
-            ResetCamera();
-        }
-    }
+    //    if (other.CompareTag("CameraChange")) {
+    //        target.transform.position = other.transform.position;
+    //    }
+    //    else if (other.CompareTag("ResetCamera")) {
+    //        ResetCamera();
+    //    }
+    //}
 }

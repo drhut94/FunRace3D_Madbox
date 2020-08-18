@@ -10,6 +10,7 @@ public class PathManager : MonoBehaviour
     private PlayerController player;
 
 
+
     #region Unity methods
 
     private void Awake() {

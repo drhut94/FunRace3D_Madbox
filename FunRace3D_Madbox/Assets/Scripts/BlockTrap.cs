@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CylinderTrap : MonoBehaviour
+public class BlockTrap : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float speed;
     private PlayerController player;
-
 
     #region Unity methods
 
@@ -16,7 +15,7 @@ public class CylinderTrap : MonoBehaviour
 
     private void Update() {
 
-        transform.Rotate(transform.up, rotationSpeed * Time.deltaTime);
+        transform.position += transform.forward * Mathf.Sin(Time.time) * speed * Time.deltaTime;
     }
 
     #endregion
